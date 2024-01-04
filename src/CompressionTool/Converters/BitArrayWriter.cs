@@ -7,10 +7,9 @@ namespace CompressionTool.Converters
         public static void WriteTo(Stream stream, BitArray bits)
         {
             var binaryWriter = new BinaryWriter(stream);
-            binaryWriter.Write(bits.Length);
 
-            var bitsAsBytes = BitArrayConverter.GetBytes(bits);
-            binaryWriter.Write(bitsAsBytes);
+            binaryWriter.Write(bits.Length);
+            binaryWriter.Write(BitArrayConverter.ToBytes(bits));
 
             binaryWriter.Flush();
         }

@@ -18,5 +18,10 @@ var options = Parser.Default.ParseArguments<Options>(args).WithParsed(options =>
         HuffmanEncoding.Encode(File.ReadAllText(inputFileName), fileStream);
     }
 
-    Console.WriteLine($"Saved in file: {outputFileName}");
+    //using (var fileStream = File.OpenRead(outputFileName))
+    //{
+    //    fileStream.Seek(0, SeekOrigin.Begin);
+    //    var text = HuffmanEncoding.Decode(fileStream);
+    //    Console.WriteLine(text);
+    //}
 });
