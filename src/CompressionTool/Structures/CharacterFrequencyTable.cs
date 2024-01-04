@@ -28,6 +28,8 @@ namespace CompressionTool.Structures
 
         private readonly SortedDictionary<char, int> frequencyTable = new SortedDictionary<char, int>();
 
+        public int Count => frequencyTable.Count;
+
         public void Increase(char character, int count = 1)
         {
             if (frequencyTable.TryGetValue(character, out int val))
@@ -40,11 +42,11 @@ namespace CompressionTool.Structures
             }
         }
 
-        public int GetCount(char character)
+        public int GetCharacterCount(char character)
         {
             return frequencyTable[character];
         }
-
+        
         public IEnumerator<KeyValuePair<char, int>> GetEnumerator()
         {
             return frequencyTable.GetEnumerator();

@@ -12,9 +12,11 @@ var options = Parser.Default.ParseArguments<Options>(args).WithParsed(options =>
     var inputFileName = options.InputFilePath;
     var outputFileName = options.OutputFilePath;
 
-    var fileContent = File.ReadAllText(inputFileName);
-
-    File.WriteAllText(outputFileName, HuffmanEncoding.Encode(fileContent));
+    using (var fileStream = File.OpenWrite(outputFileName))
+    {
+        fileStream.Seek(0, SeekOrigin.Begin);
+        HuffmanEncoding.Encode(File.ReadAllText(inputFileName), fileStream);
+    }
 
     Console.WriteLine($"Saved in file: {outputFileName}");
 });
